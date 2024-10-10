@@ -47,7 +47,57 @@ def Index():
         return render_template('index.html', login_auth=login_auth, id=id, days =days, weathers = weathers)
     else:
         return render_template('index.html', login_auth=login_auth, id=id, days=days,weathers = weathers)
+
+@app.route("/addquestion", methods=['GET', 'POST'])
+def addquestion():
+    name, login_auth = giris_kotrol()
+    id = random.randint(0,4)
+    check = ""
+    name, login_auth = giris_kotrol()
+    if request.method == "POST":
+        question = request.form["questionName"]
+        choice_1 = request.form["choice_1"]
+        choice_2 = request.form["choice_2"]
+        choice_3 = request.form["choice_3"]
+        correct_answer = request.form["choice_4"]
+        choice_4 = request.form["choice_4"]
+        if question == "" or choice_1 == "" or choice_2 == "" or choice_3 == "" or correct_answer == "":
+            check = "Lütfen seçenekleri boş bırakmayınız!"
+        else:
+            with sqlite3.connect("database.db") as con:
+                con.row_factory = sqlite3.Row
+                cur = con.cursor()
+                random_number = random.randint(1,4)
+                if random_number == 1:
+                    c1 = correct_answer
+                    c4 = choice_1
+                    c2 = choice_2
+                    c3 = choice_3
+                elif random_number == 2:
+                    c2 = correct_answer
+                    c4 = choice_2
+                    c1 = choice_1
+                    c3 = choice_3
+                elif random_number == 3:
+                    c3 = correct_answer
+                    c4 = choice_3
+                    c1 = choice_1
+                    c2 = choice_2
+                elif random_number == 4:
+                    c4 = correct_answer
+                    c1 = choice_1
+                    c2 = choice_2
+                    c3 = choice_3
+                sqlQuary= """ INSERT INTO sorular (soru,sik1,sik2,sik3,sik4,dogru)
+                   VALUES ("{}","{}","{}","{}","{}","{}")""".format(question, c1, c2, c3,c4,correct_answer)
+                cur.execute(sqlQuary)
+                con.commit()
+            check = "Soru başarıyla eklendi. Katkılarınız için teşekkürler"
+
+
+    return render_template('addquestion.html',login_auth=login_auth,id = id,check = check)
     
+
 
 @app.route("/kayit", methods=['GET', 'POST'])
 def Kayit():
@@ -126,6 +176,8 @@ def Giris():
 
 
     return render_template("giris.html", name=name, login_auth=login_auth, error=error)
+
+
 @app.route("/sinav/<int:id>", methods=['GET', 'POST'])
 def Sinav(id):
     kontrol = ""
@@ -146,7 +198,7 @@ def Sinav(id):
                 cevab = request.form["cevab"]
                 if cevab == dogrucevab[id][0]:
                     kullaniciPuani = puan + 1
-                    print("doğru cevabb helel")
+                    
                     update = "UPDATE kullanicilar SET puan = '" + str(kullaniciPuani) + "' WHERE isim = '" + name + "'"
                     con.cursor().execute(update)
                     con.commit()

@@ -1,6 +1,6 @@
 import requests
 import datetime
-from babel.dates import format_date
+
 def bilgilerigetir(city_name="Istanbul"):
     url2 = "http://api.weatherapi.com/v1/forecast.json?key=960e29f573d94fb7826195738232509&q={}&days=3&aqi=no&alerts=no"
     asilresponse = requests.get(url2.format(city_name)).json()

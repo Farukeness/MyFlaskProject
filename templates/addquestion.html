@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block body_content%}
+<title>Soru Ekle</title>
+<section>
+    <h3>Lütfen Eklemek istediğiniz soruyu ve sorunun cevaplarını ekleyiniz</h3>
+    <form method="post" action="{{ url_for('addquestion') }}">
+        <div class="row uniform 50%">
+            {% if check %}
+            <div class="6u$ 12u$(xsmall)">{{ check }}</div>
+            {% endif %}
+            <div class="6u 12u$(xsmall)">
+                <input type="text" name="questionName" id="questionName" value="" placeholder="Soru:">
+            </div>
+            <div class="6u$ 12u$(xsmall)">
+                <input type="text" name="choice_1" id="choice_1" value="" placeholder="Seçenek 1">
+            </div>
+            <div class="6u$ 12u$(xsmall)">
+                <input type="text" name="choice_2" id="choice_2" value="" placeholder="Seçenek 2 ">
+            </div>
+            <div class="6u$ 12u$(xsmall)">
+                <input type="text" name="choice_3" id="choice_1" value="" placeholder="Seçenek 3">
+            </div>
+            <div class="6u$ 12u$(xsmall)">
+                <input type="text" name="choice_4" id="choice_4" value="" placeholder="Seçenek 4('Doğru seçeneği buraya giriniz')">
+            </div>
+        </div>
+            <div class="12u$">
+                <ul class="actions">
+                    <li><input type="submit" value="Soru Ekle" class="special"></li>
+
+                </ul>
+            </div>
+        </div>
+    </form>
+</section>
+
+
+
+{% endblock %}

@@ -7,7 +7,7 @@
 		<link rel="stylesheet" href="/static/assets/css/main.css">
 	</head>
 <body>
-
+	
 		<!-- Header -->
 			<header id="header">
 				<div class="inner">
@@ -19,13 +19,14 @@
 						{% else %}
 						<a href="{{url_for('Sinav',id=id)}}">Sınav</a>
 						<a href="{{ url_for('LiderlikTablosu') }}">Liderlik Tablosu</a>
+						<a href="{{url_for('addquestion')}}">Soru Ekle</a>
 						<a href="{{ url_for('Logout') }}"> {{ name }} Çıkış Yap</a>
 						{% endif %}
 					</nav>
 				</div>
 			</header>
 
-		{% block body_content %}
+			{% block body_content %}
 		{% endblock %}
 <!-- Footer -->
 
