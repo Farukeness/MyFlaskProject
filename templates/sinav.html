@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block body_content%}
+
+<title>Sınav</title>
+<!-- Form -->
+
+<section>
+    <!-- Gizli Form -->
+
+    <!-- Gizli Form -->
+    <h3>Soru------------------------------------Puan:{{ puan }}</h3>
+    <h2></h2>
+
+    <form method="post" action="{{ url_for('Sinav',id=id) }}">
+        <!-- Soru seçenekleri buraya eklenecek -->
+        <p>{{ sorular[id][1] }}</p>
+        <div class="row uniform 50%">
+            <div class="4u 12u$(xsmall)">
+
+                <input type="radio" id="priority-normal" name="cevab" value="{{ sorular[id][2] }}" checked>
+                <label for="priority-normal">{{ sorular[id][2] }}</label>
+            </div>
+            <div class="4u 12u$(xsmall)">
+
+                <input type="radio" id="priority-high" name="cevab" value="{{ sorular[id][3] }}" >
+                <label for="priority-high">{{ sorular[id][3] }}</label>
+            </div>
+            <div class="4u 12u$(xsmall)">
+                <input type="radio" id="priority-low" name="cevab" value="{{ sorular[id][4] }}">
+                <label for="priority-low">{{ sorular[id][4] }}</label>
+            </div>
+            <div class="4u 12u$(xsmall)">
+                <input type="radio" id="priority-zero" name="cevab" value="{{ sorular[id][5] }}">
+                <label for="priority-zero">{{ sorular[id][5] }}</label>
+            </div>
+
+            <div class="12u$">
+                <ul class="actions">
+                    <li><input type="submit" name="Cevabla" value="Cevabla" class="special"></li>
+                </ul>
+            </div>
+        </div>
+    </form>
+    <h2>.</h2>
+   
+</section>
+
+
+{% endblock %}

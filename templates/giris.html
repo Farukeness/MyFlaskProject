@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block body_content %}
+<title>Giris</title>
+<section>
+    <h1>.</h1>
+    <h3>Giriş Yapmak İçin Bİlgilerinizi Giriniz</h3>
+    <form method="post" action="{{ url_for('Giris') }}">
+
+        <div class="row uniform 50%">
+            {% if error  %}
+            <div class="6u$ 12u$(xsmall)">{{ error }}</div>
+            {% endif %}
+            <div class="6u 12u$(xsmall)">
+                <input type="text" name="username" id="username" value="" placeholder="İsim">
+            </div>
+            <div class="6u$ 12u$(xsmall)">
+                <input type="password" name="password" id="password" value="" placeholder="Sifre">
+            </div>
+            <ul></ul>
+
+        </div>
+            <div class="12u$">
+                <ul class="actions">
+                    <li><input type="submit" value="Giriş Yap" ></li>
+                </ul>
+                <ul></ul>
+                <h1>.</h1>
+                <h1>.</h1>
+
+            </div>
+
+    </form>
+</section>
+
+
+<!-- Form -->
+
+
+{% endblock %}

@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+		<link rel="stylesheet" href="/static/assets/css/main.css">
+	</head>
+<body>
+
+		<!-- Header -->
+			<header id="header">
+				<div class="inner">
+					<nav id="nav">
+						{% if login_auth == False %}
+						<a href="{{url_for('Index')}}">Anasayfa</a>
+						<a href="{{url_for('Kayit')}}">Kayıt Ol</a>
+						<a href="{{url_for('Giris')}}">Giris Yap</a>
+						{% else %}
+						<a href="{{url_for('Sinav',id=id)}}">Sınav</a>
+						<a href="{{ url_for('LiderlikTablosu') }}">Liderlik Tablosu</a>
+						<a href="{{ url_for('Logout') }}"> {{ name }} Çıkış Yap</a>
+						{% endif %}
+					</nav>
+				</div>
+			</header>
+
+		{% block body_content %}
+		{% endblock %}
+<!-- Footer -->
+
+
+		<div class="copyright">
+			Faruk Enes ZAN
+		</div>
+
+		<!-- Scripts
+			<script src="/static/assets/js/jquery.min.js"></script>
+			<script src="/static/assets/js/skel.min.js"></script>
+			<script src="/static/assets/js/util.js"></script>
+			<script src="/static/assets/js/main.js"></script>
+			-->
+
+	</body>
+</html>

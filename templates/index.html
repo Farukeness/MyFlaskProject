@@ -1,0 +1,73 @@
+
+{% extends 'base.html' %}
+{% block body_content%}
+
+<title>Anasayfa</title>
+		<!-- Banner -->
+<h3>Hava Durumu</h3>
+<form method="post" action="{{ url_for('Index') }}">
+
+        <div class="row uniform 50%">
+
+            <div class="6u 12u$(xsmall)">
+                <input type="text" name="name" id="name" value="" placeholder="Şehir Giriniz:">
+            </div>
+            <ul></ul>
+
+        </div>
+            <div class="12u$">
+                <ul class="actions">
+                    <li><input type="submit" value="Ara" ></li>
+                </ul>
+                <ul></ul>
+
+
+            </div>
+    <table class="alt">
+        <thead>
+        <tr>
+            <th>Günler:</th>
+            <th>{{ days[0] }}</th>
+            <th>{{ days[1] }}</th>
+            <th>{{ days[2] }}</th>
+
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr>
+            <td>{{ weathers["city"]  }}  Gece: {{ weathers["night_temp"] }}C. Gündüz: {{ weathers["day_temp"] }}</td>
+            <td>
+                <div class="left">
+        <div>{{ weathers["temp1"] }}C </div>
+    <img src="{{ weathers['temp_icon'] }}" alt="" />
+    </div>
+            </td>
+            <td>
+                <div class="left">
+        <div>{{ weathers["temp2"] }}C </div>
+    <img src="{{ weathers['temp_icon2'] }}" alt="" />
+    </div>
+            </td>
+            <td>
+                <div class="left">
+        <div>{{ weathers['temp3'] }}C </div>
+    <img src="{{ weathers['temp_icon3'] }}" alt="" />
+    </div>
+            </td>
+        </tr>
+
+        </tbody>
+    </table>
+
+
+    <h1>.</h1>
+    </form>
+
+
+
+
+
+
+
+{% endblock %}

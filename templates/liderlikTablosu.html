@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block body_content%}
+<title>Lider</title>
+<h4>Liderlik Sıralaması</h4>
+<div class="table-wrapper">
+    <table class="alt">
+        <thead>
+        <tr>
+            <th>İsim</th>
+            <th>Kullanıcı İsmi</th>
+            <th>Puan</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for row in rows %}
+        <tr>
+            <td>{{ row["isim"] }}</td>
+            <td>{{ row["kadi"] }}</td>
+            <td>{{ row["puan"] }}</td>
+        </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+</div>
+</section>
+
+
+{% endblock %}
