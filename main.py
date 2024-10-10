@@ -60,7 +60,6 @@ def addquestion():
         choice_2 = request.form["choice_2"]
         choice_3 = request.form["choice_3"]
         correct_answer = request.form["choice_4"]
-        choice_4 = request.form["choice_4"]
         if question == "" or choice_1 == "" or choice_2 == "" or choice_3 == "" or correct_answer == "":
             check = "Lütfen seçenekleri boş bırakmayınız!"
         else:
@@ -182,17 +181,16 @@ def Giris():
 def Sinav(id):
     kontrol = ""
     kullaniciPuani = 0
-    rastgele = random.randint(0,4)
+    rastgele = random.randint(0,10)
     name, login_auth = giris_kotrol()
     con = sqlite3.connect("database.db")
     cur = con.cursor()
     puan = cur.execute("SELECT puan FROM kullanicilar WHERE isim = '"+name+"'").fetchone()[0]
-    print(name)
     sorular = cur.execute("SELECT * FROM sorular").fetchall()
     con.commit()
     dogrucevab = cur.execute("SELECT dogru FROM sorular ").fetchall()
     used_questions = []
-    if id < 5:
+    if id < len(sorular)+ 1:
         if request.method == 'POST':
             if request.form:
                 cevab = request.form["cevab"]
@@ -205,13 +203,13 @@ def Sinav(id):
                     used_questions.append(id)
                 used_questions.append(id)
 
-                # Tüm sorular kullanıldıysa, liste sıfırlanır
+                # IF used all questions then list clear
                 if len(used_questions) == len(sorular):
                     used_questions.clear()
 
-                # Kullanılmayan bir soru seçmek için döngü
+                
                 while True:
-                    new_id = random.randint(0, 4)
+                    new_id = random.randint(0, len(sorular))
                     if new_id not in used_questions:
                         break
 
