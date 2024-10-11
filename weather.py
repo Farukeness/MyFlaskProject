@@ -20,28 +20,23 @@ def bilgilerigetir(city_name="Istanbul"):
     return info
 
 def day_to_turkish(days):
+    days_turkish = ["Pazartesi","Salı","Çarşamba","Peşembe","Cuma","Cumartesi","Pazar"]
+    days_english = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
+
     for day in range(len(days)):
-        if days[day] == "Monday":
-            days[day] = "Pazartesi"
-        elif days[day] == "Tuesday":
-            days[day] = "Salı"
-        elif days[day] == "Wednesday":
-            days[day] = "Çarşamba"
-        elif days[day] == "Thursday":
-            days[day] = "Perşembe"
-        elif days[day] == "Friday":
-            days[day] = "Cuma"
-        elif days[day] == "Saturday":
-            days[day] = "Cumartesi"
-        elif days[day] == "Sunday":
-            days[day] = "Pazar"
+        for x in range(len(days_english)):
+            if days[day] == days_english[x]:
+                days[day] = days_turkish[x]
     return days
+
+
 
 today = datetime.date.today().strftime("%A")
 tomorrow = (datetime.date.today() + datetime.timedelta(days=1)).strftime("%A")
 next_day  = (datetime.date.today() + datetime.timedelta(days=2)).strftime("%A")
 days = [today,tomorrow,next_day]
 days = day_to_turkish(days)
+
 
 
 
